@@ -1,0 +1,6 @@
+langgraph
+langchain-core
+a2a-sdk
+uvicorn
+starlette
+boto3

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+.env
+
+# Node / CDK
+node_modules/
+infra/dist/
+infra/cdk.out/
+*.js
+*.d.ts
+!infra/cdk.json
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+
+# Blog drafts (published separately on AWS blog)
+blog/

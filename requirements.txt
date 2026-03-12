@@ -1,0 +1,4 @@
+# Core delegation library — no external dependencies (stdlib only)
+
+# Development / testing
+pytest>=8.0

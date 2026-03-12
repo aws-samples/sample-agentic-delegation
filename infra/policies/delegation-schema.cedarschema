@@ -1,0 +1,34 @@
+namespace AgenticDelegation {
+
+    entity User;
+
+    entity Agent in [User] {
+        agentType: String,
+        framework: String,
+        trustLevel: Long,
+    };
+
+    entity Tool {
+        category: String,
+        sensitivityLevel: Long,
+    };
+
+    entity DelegationContext {
+        chainDepth: Long,
+        originatingUser: String,
+        maxAmount: Long,
+        readOnly: Bool,
+    };
+
+    action callTool appliesTo {
+        principal: Agent,
+        resource: Tool,
+        context: DelegationContext,
+    };
+
+    action delegateTask appliesTo {
+        principal: Agent,
+        resource: Agent,
+        context: DelegationContext,
+    };
+}

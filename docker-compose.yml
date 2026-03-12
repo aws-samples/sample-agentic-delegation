@@ -1,0 +1,44 @@
+version: "3.8"
+
+# Local development compose — runs all three agents.
+# Build from repo root: docker compose up --build
+#
+# Note: This runs the agents locally for development/testing.
+# For production, deploy via CDK to AgentCore Runtime.
+
+services:
+  coordinator:
+    build:
+      context: .
+      dockerfile: agents/coordinator/Dockerfile
+    ports:
+      - "9000:9000"
+    environment:
+      - AWS_REGION=us-east-1
+      - PRICING_AGENT_URL=http://pricing:9001
+      - PURCHASING_AGENT_URL=http://purchasing:9002
+      - GATEWAY_URL=http://localhost:8080
+      - DELEGATION_LOG_GROUP=/agentic-delegation/audit
+    depends_on:
+      - pricing
+      - purchasing
+
+  pricing:
+    build:
+      context: .
+      dockerfile: agents/pricing/Dockerfile
+    ports:
+      - "9001:9000"
+    environment:
+      - GATEWAY_URL=http://localhost:8080
+      - DELEGATION_LOG_GROUP=/agentic-delegation/audit
+
+  purchasing:
+    build:
+      context: .
+      dockerfile: agents/purchasing/Dockerfile
+    ports:
+      - "9002:9000"
+    environment:
+      - GATEWAY_URL=http://localhost:8080
+      - DELEGATION_LOG_GROUP=/agentic-delegation/audit
