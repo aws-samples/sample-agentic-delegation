@@ -275,8 +275,10 @@ a2a_app = A2AStarletteApplication(
 )
 
 if __name__ == "__main__":
+    # Bind to all interfaces — required for Docker container networking
+    host = os.environ.get("HOST", "0.0.0.0")  # nosec B104
     uvicorn.run(
         a2a_app.build(),
-        host="0.0.0.0",
+        host=host,
         port=9000,
     )

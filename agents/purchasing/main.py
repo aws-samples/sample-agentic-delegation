@@ -294,20 +294,14 @@ class PurchasingAgentExecutor(AgentExecutor):
 
 agent_card = AgentCard(
     name="Purchasing Agent",
-    description=(
-        "Purchase order creation specialist — "
-        "write access, amount-capped by delegation"
-    ),
+    description="Purchase order creation specialist — write access, amount-capped by delegation",
     url="http://0.0.0.0:9000/",
     version="1.0.0",
     skills=[
         AgentSkill(
             id="create-po",
             name="Create Purchase Order",
-            description=(
-                "Create a PO for a product SKU, "
-                "subject to delegated amount cap"
-            ),
+            description="Create a PO for a product SKU, subject to delegated amount cap",
         ),
     ],
     capabilities=AgentCapabilities(streaming=False),
@@ -324,8 +318,10 @@ a2a_app = A2AStarletteApplication(
 )
 
 if __name__ == "__main__":
+    # Bind to all interfaces — required for Docker container networking
+    host = os.environ.get("HOST", "0.0.0.0")  # nosec B104
     uvicorn.run(
         a2a_app.build(),
-        host="0.0.0.0",
+        host=host,
         port=9000,
     )
