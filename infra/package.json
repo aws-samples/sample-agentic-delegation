@@ -19,6 +19,7 @@
     "@types/node": "25.4.0",
     "aws-cdk": "2.1110.0",
     "cdk-nag": "2.37.55",
+    "ts-node": "10.9.2",
     "typescript": "5.7.3"
   }
 }
