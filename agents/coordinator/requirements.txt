@@ -1,5 +1,4 @@
 strands-agents
-strands-agents-multiagent
 bedrock-agentcore
 a2a-sdk
 boto3
